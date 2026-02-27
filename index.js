@@ -2,9 +2,19 @@
 
 import { B64, convertBase } from "./third-party/convertBase.js";
 import emojiObject from 'unicode-emoji-json' with {type: 'json'};
+import { EN, RU, FR, UA, BN } from "./third-party/encoder.js";
 
 const emoji = Object.keys(emojiObject);
-const emojiOffset = 0x10001;
+
+const seq = [
+    ...emoji,
+    ...EN,
+    ...RU,
+    ...FR,
+    ...UA,
+    ...BN
+];
+const seqOffset = 0x10001;
 function buildTrie(sequences) {
     const root = Object.create(null);
 
@@ -22,7 +32,7 @@ function buildTrie(sequences) {
 
     return root;
 }
-const emojiTrie = buildTrie(emoji);
+const seqTrie = buildTrie(seq);
 
 function stringChunks(str, num) {
     const output = [];
@@ -57,7 +67,7 @@ export function encode(str, base = 64, baseChars = B64) {
 
     for (let i = 0; i < str.length;) {
 
-        let node = emojiTrie;
+        let node = seqTrie;
         let j = i;
         let lastMatch = -1;
         let lastIndex = -1;
@@ -76,7 +86,7 @@ export function encode(str, base = 64, baseChars = B64) {
         }
 
         if (lastMatch !== -1) {
-            const packed = emojiOffset + lastIndex;
+            const packed = seqOffset + lastIndex;
             output += convertBase(packed.toString(10), 10, 41).padStart(3, '0');
             i = lastMatch + 1;
         } else {
@@ -110,9 +120,9 @@ export function decode(str, base = 64, baseChars = B64) {
     for (const chunk of stringChunks(base41, 3)) {
         const value = parseInt(convertBase(chunk, 41, 10), 10);
 
-        if (value >= emojiOffset) {
-            const index = value - emojiOffset;
-            output += emoji[index];
+        if (value >= seqOffset) {
+            const index = value - seqOffset;
+            output += seq[index];
         } else {
             output += String.fromCharCode(value - 1);
         }
