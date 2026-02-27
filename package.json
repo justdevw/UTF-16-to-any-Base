@@ -1,0 +1,27 @@
+{
+  "name": "@strc/utf16-to-any-base",
+  "version": "1.0.0",
+  "description": "Convert UTF-16 to Base64, Base32, etc., and back.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justdevw/UTF-16-to-any-Base.git"
+  },
+  "author": "JustDeveloper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justdevw/UTF-16-to-any-Base/issues"
+  },
+  "homepage": "https://jssc.js.org/",
+  "files": [
+    "index.js",
+    "third-party"
+  ],
+  "type": "module",
+  "dependencies": {
+    "unicode-emoji-json": "0.8.0"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
