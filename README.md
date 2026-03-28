@@ -26,8 +26,5 @@ const encoded = encode("Hello, world!", 64);
 console.log("Base64:", encoded, "\nUTF-16:", decode(encoded, 64));
 ```
 
-## Dependencies
-- [`unicode-emoji-json`](https://www.npmjs.com/package/unicode-emoji-json) by [Mu-An Chiou](https://github.com/muan)
-
 ## License
 [MIT © 2026 JustDeveloper](https://github.com/justdevw/UTF-16-to-any-Base/blob/main/LICENSE)
