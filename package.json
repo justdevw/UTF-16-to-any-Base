@@ -1,6 +1,6 @@
 {
   "name": "@strc/utf16-to-any-base",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Encode JavaScript UTF-16 strings to arbitrary bases (Base64, Base32, etc.) and decode them back.",
   "main": "index.js",
   "repository": {
@@ -15,7 +15,8 @@
   "homepage": "https://jssc.js.org/",
   "files": [
     "index.js",
-    "README.md"
+    "README.md",
+    "third-party"
   ],
   "type": "module",
   "engines": {
